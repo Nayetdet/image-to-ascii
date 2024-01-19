@@ -25,5 +25,5 @@ Ao ser executado pela primeira vez, o programa cria um arquivo de configuraçõe
 > - **print_result:** Indica se o resultado (a imagem ASCII) deve ser impresso no console ou não. <br />
 > - **characters:** Uma string que contém os caracteres que serão usados para representar diferentes tons de cinza na imagem ASCII. Cada caractere representa um nível de cinza, do mais escuro ao mais claro. A ordem desses caracteres pode ser invertida se a opção reverse_background estiver ativada. <br />
 
-### Output alternativo
+## Output alternativo
 Outro ponto crucial a ser destacado é que, durante o processamento da imagem, é gerado um arquivo .txt (no caso de imagens) ou um arquivo .zip (no caso de GIFs), proporcionando ao usuário fácil acesso aos resultados obtidos.

@@ -1,5 +1,5 @@
 # Imagem para ASCII
-Este é um código que transforma qualquer imagem ou gif em uma representação visual única e estilizada usando caracteres ASCII.
+Este é um código que transforma qualquer imagem ou GIF em uma representação visual única e estilizada usando caracteres ASCII.
 
 ## Pré-Requisitos
 Antes de prosseguir com as instruções abaixo, certifique-se de que você possui uma versão atualizada do Python e instalou todos os requisitos listados no arquivo requirements.txt. É importante destacar que este programa oferece suporte exclusivamente para o sistema operacional Windows.

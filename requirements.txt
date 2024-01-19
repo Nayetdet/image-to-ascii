@@ -1,0 +1,2 @@
+Pillow==10.2.0
+Uni_Curses==2.1.3

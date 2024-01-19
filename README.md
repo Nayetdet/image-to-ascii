@@ -1,14 +1,14 @@
 # Imagem para ASCII
 Este é um código que transforma qualquer imagem ou gif em uma representação visual única e estilizada usando caracteres ASCII.
 
-## Pré-Requisitos
+# Pré-Requisitos
 Antes de prosseguir com as instruções abaixo, certifique-se de que você possui uma versão atualizada do Python e instalou todos os requisitos listados no arquivo requirements.txt. É importante destacar que este programa oferece suporte exclusivamente para o sistema operacional Windows.
 
-## Instalação e Utilização
+# Instalação e Utilização
 Para utilizar esse código, é simples. Coloque cada um dos arquivos desta página em uma PASTA VAZIA, junto com alguns arquivos nos formatos png, jpg ou gif. Em seguida, inicialize o arquivo run.bat e insira o nome da imagem desejada quando solicitado.
 
-## Features Extras
-### Configurações Personalizadas
+# Features Extras
+## Configurações Personalizadas
 Ao ser executado pela primeira vez, o programa cria um arquivo de configurações JSON (`settings.json`). Este arquivo pode ser modificado posteriormente pelo usuário para ajustar as preferências:
 
 ```

@@ -11,12 +11,12 @@ Para utilizar esse código, é simples. Coloque cada um dos arquivos desta pági
 Ao ser executado pela primeira vez, o programa cria um arquivo de configurações JSON (`settings.json`). Este arquivo pode ser modificado posteriormente pelo usuário para ajustar as preferências:
 
 ```
-    "fps": 24,
-    "width": 80,
-    "height": 40,
-    "reverse_background": false,
-    "print_result": true,
-    "characters": " _,.:;-~+=*!?/[(&$#@"
+"fps": 24,
+"width": 80,
+"height": 40,
+"reverse_background": false,
+"print_result": true,
+"characters": " _,.:;-~+=*!?/[(&$#@"
 ```
 > - **fps:** Indica o número de frames (quadros) por segundo na animação ASCII gerada a partir de um arquivo GIF. <br />
 > - **width:** Representa a largura desejada para a arte ASCII gerada. <br />

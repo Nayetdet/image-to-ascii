@@ -31,7 +31,7 @@ class ConfigurationManager:
         self.clean_up_previous_files()
 
     def check_current_directory(self):
-        expected_files = [path.basename(__file__), 'run.bat', 'output.txt', 'output.zip', 'settings.json', '__pycache__']
+        expected_files = [path.basename(__file__), 'run.bat', 'README.md', 'output.zip', 'output.txt', 'settings.json', 'requirements.txt', '__pycache__']
         unexpected_files = [file for file in self.files if not file.endswith(('.gif', '.jpg', '.png')) and file not in expected_files]
         if unexpected_files:
             exit('Insira este arquivo em uma pasta vazia.')
@@ -127,4 +127,3 @@ class ASCIIArtGenerator(ConfigurationManager):
 
 if __name__ == '__main__':
     ASCIIArtGenerator()
- 

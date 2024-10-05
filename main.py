@@ -58,13 +58,13 @@ class ConfigurationManager:
         self._directory = os.path.dirname(os.path.realpath(__file__))
         self._files = os.listdir(self._directory)
         self._clean_up_previous_files()
-    
+
     def _check_current_directory(self):
         unexpected_files = [
             file for file in self._files
             if not file.endswith((".gif", ".jpg", ".png")) and file not in self.EXPECTED_FILES
         ]
-        
+
         if unexpected_files:
             sys.exit("Erro: Este arquivo deve ser inserido em uma pasta vazia.")
 
@@ -77,7 +77,6 @@ class ConfigurationManager:
 
     def _get_user_config(self):
         self._check_current_directory()
-
         if "settings.json" not in self._files:
             with open("settings.json", "w") as file:
                 json.dump(self.DEFAULT_CONFIG, file, indent = 4)
@@ -100,7 +99,7 @@ class ConfigurationManager:
         for file in self._files:
             if file in ("output.zip", "output.txt"):
                 os.remove(os.path.join(self._directory, file))
-                
+
     def get_properties(self):
         fps, width, height, reverse_chars, print_result, chars = self._get_user_config()
         image, image_path = self._get_user_image(width, height)
@@ -109,59 +108,67 @@ class ConfigurationManager:
 class ASCIIArtGenerator:
     def __init__(self):
         self._config_manager = ConfigurationManager()
-        self.properties = self._config_manager.get_properties()
+        self._properties = self._config_manager.get_properties()
+        self._select_processing_method()
 
     def _convert_to_ascii(self, image):
-        image = image.resize((self.properties.width, self.properties.height)).convert("L")
-        raw_text = "".join([self.properties.chars[int(color / (255 / (len(self.properties.chars) - 1)))] for color in image.getdata()])
-        return "\n".join([raw_text[i:(i + self.properties.width)] for i in range(0, len(raw_text), self.properties.width)])
+        image = image.resize((self._properties.width, self._properties.height)).convert("L")
+        raw_text = "".join([
+            self._properties.chars[int(color / (255 / (len(self._properties.chars) - 1)))]
+            for color in image.getdata()
+        ])
+
+        return "\n".join([
+            raw_text[i:(i + self._properties.width)]
+            for i in range(0, len(raw_text), self._properties.width)
+        ])
 
     def _handle_gif_conversion(self):
+        ascii_frames = []
         memfile = io.BytesIO()
-        with zipfile.ZipFile(memfile, "w", compression = zipfile.ZIP_DEFLATED) as file:
-            output = []
-            for frame in range(self.properties.image.n_frames):
-                self.properties.image.seek(frame)
-                ascii = self._convert_to_ascii(self.properties.image)
 
-                output.append(ascii)
-                file.writestr(
-                    f"output{frame + 1}.txt", str.encode(ascii, "utf-8")
-                )
+        with zipfile.ZipFile(memfile, "w", compression = zipfile.ZIP_DEFLATED) as zip_file:
+            for frame in range(self._properties.image.n_frames):
+                self._properties.image.seek(frame)
+                ascii_art = self._convert_to_ascii(self._properties.image)
 
-        with open("output.zip", "wb") as file:
-            file.write(memfile.getvalue())
+                ascii_frames.append(ascii_art)
+                zip_file.writestr(f"output{frame + 1}.txt", str.encode(ascii_art, "utf-8"))
 
-        if self.properties.print_result:
+        with open("output.zip", "wb") as output_file:
+            output_file.write(memfile.getvalue())
+
+        if self._properties.print_result:
             initscr()
-            timeout(self.properties.ms)
+            timeout(self._properties.ms)
             curs_set(0)
             noecho()
 
             while True:
-                for text in output:
-                    mvaddstr(0, 0, text.replace("\n", ""))
-                    if getch() is ERR: refresh()
+                for ascii_frame in ascii_frames:
+                    mvaddstr(0, 0, ascii_frame.replace("\n", ""))
+                    if getch() is ERR:
+                        refresh()
                     else:
                         endwin()
                         return
 
     def _handle_image_conversion(self):
-        text = self._convert_to_ascii(self.properties.image)
-        with open("output.txt", "w") as file:
-            file.write(text)
+        ascii_art = self._convert_to_ascii(self._properties.image)
+        with open("output.txt", "w") as output_file:
+            output_file.write(ascii_art)
 
-        if self.properties.print_result:
+        if self._properties.print_result:
             initscr()
             curs_set(0)
 
-            mvaddstr(0, 0, text.replace("\n", ""))
+            mvaddstr(0, 0, ascii_art.replace("\n", ""))
             getch()
             endwin()
-       
-    def start(self):
+
+    def _select_processing_method(self):
         try:
-            match self.properties.image_path[self.properties.image_path.rfind(".") + 1:]:
+            match self._properties.image_path[self._properties.image_path.rfind(".") + 1:]:
                 case "gif": self._handle_gif_conversion()
                 case "jpg" | "png": self._handle_image_conversion()
                 case _: sys.exit("Erro: O formato do arquivo fornecido não é suportado.")
@@ -169,8 +176,8 @@ class ASCIIArtGenerator:
         os.system("cls || clear")
 
 def main():
-    ascii_generator = ASCIIArtGenerator()
-    ascii_generator.start()
+    ASCIIArtGenerator()
 
 if __name__ == "__main__":
     main()
+ 

@@ -1,9 +1,10 @@
 ﻿namespace ImageToASCII.Exceptions
 {
-    public class InvalidSettingsFileException : ArgumentException
+    public class InvalidSettingsFileException : Exception
     {
         public InvalidSettingsFileException()
         {
+
         }
 
         public InvalidSettingsFileException(string message)
@@ -14,12 +15,6 @@
 
         public InvalidSettingsFileException(string message, Exception innerException)
             : base(message, innerException)
-        {
-
-        }
-
-        public InvalidSettingsFileException(string message, string paramName)
-            : base(message, paramName)
         {
 
         }

@@ -17,6 +17,7 @@ Ao ser executado pela primeira vez, o programa cria um arquivo de configuraçõe
 > - **ScreenWidth:** Representa a largura desejada para a arte ASCII gerada. <br />
 > - **ScreenHeight:** Representa a altura desejada para a arte ASCII gerada. <br />
 > - **Fps:** Indica o número de frames (quadros) por segundo na animação ASCII gerada a partir de um arquivo GIF. <br />
+> - **IsCharacterReversalEnabled:** Indica se o fundo da imagem ASCII gerada deve ser invertido ou não. <br />
 
 ## Output alternativo
 Outro ponto crucial a ser destacado é que, durante o processamento da imagem, é gerado um arquivo .txt (no caso de imagens) ou um arquivo .zip (no caso de GIFs), proporcionando ao usuário fácil acesso aos resultados obtidos.

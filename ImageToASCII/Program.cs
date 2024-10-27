@@ -5,20 +5,17 @@ namespace ImageToASCII
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void DisplayMenu(int screenWidth, int screenHeight)
         {
-            SettingsLoader settingsLoader = new();
-            DisplaySettings userSettings = settingsLoader.GetUserConfig();
-
             Console.Clear();
             Console.SetWindowSize(1, 1);
-            Console.SetWindowSize(userSettings.ScreenWidth + 1, userSettings.ScreenHeight + 1);
+            Console.SetWindowSize(screenWidth, screenHeight);
             Console.Title = "ImageToASCII";
             Console.CursorVisible = false;
 
             if (OperatingSystem.IsWindows())
             {
-                Console.SetBufferSize(userSettings.ScreenWidth + 1, userSettings.ScreenHeight + 1);
+                Console.SetBufferSize(screenWidth, screenHeight);
             }
 
             Console.WriteLine("""
@@ -29,12 +26,27 @@ namespace ImageToASCII
                                   |___/                                    
                    
                 """);
+        }
 
-            Console.Write(">> Enter a valid path for the image/gif: ");
-            string filePath = Console.ReadLine() ?? string.Empty;
+        private static void Main(string[] args)
+        {
+            try
+            {
+                SettingsLoader settingsLoader = new();
+                DisplaySettings userSettings = settingsLoader.GetUserConfig();
 
-            ASCIIArtGenerator asciiArtGenerator = new(userSettings);
-            asciiArtGenerator.DisplayASCIIArt(filePath);
+                DisplayMenu(userSettings.ScreenWidth + 1, userSettings.ScreenHeight + 1);
+                Console.Write(">> Enter a valid file path for an image or GIF: ");
+                string filePath = Console.ReadLine() ?? string.Empty;
+
+                ASCIIArtGenerator asciiArtGenerator = new(userSettings);
+                asciiArtGenerator.DisplayASCIIArt(filePath);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"ERROR: {e.Message}");
+            }
 
             Console.ReadKey();
         }

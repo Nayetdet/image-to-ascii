@@ -2,7 +2,7 @@
 
 namespace ImageToASCII.ArtGeneration
 {
-    internal static class ASCIIArtFileManager
+    public static class ASCIIArtFileManager
     {
         private static string GetFilePath(string fileName, string fileExtension)
         {
@@ -28,7 +28,7 @@ namespace ImageToASCII.ArtGeneration
                 }
             }
 
-            string zipFilePath = GetFilePath("ASCIIArtGIF", "zip");
+            string zipFilePath = GetFilePath("image-to-ascii-gif", "zip");
             using FileStream fileStream = new(zipFilePath, FileMode.Create);
             memoryStream.Seek(0, SeekOrigin.Begin);
             memoryStream.CopyTo(fileStream);
@@ -36,7 +36,7 @@ namespace ImageToASCII.ArtGeneration
 
         private static void SaveFrameAsTextFile(string asciiFrame)
         {
-            string txtFilePath = GetFilePath("ASCIIArtImage", "txt");
+            string txtFilePath = GetFilePath("image-to-ascii-img", "txt");
             File.WriteAllText(txtFilePath, asciiFrame);
         }
 

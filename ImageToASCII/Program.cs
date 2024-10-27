@@ -48,6 +48,7 @@ namespace ImageToASCII
                 {
                     Console.WriteLine();
                     Console.WriteLine($"ERROR: {e.Message}");
+                    Thread.Sleep(3000);
                 }
             }
         }

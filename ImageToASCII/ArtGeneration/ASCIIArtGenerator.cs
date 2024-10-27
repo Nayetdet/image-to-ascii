@@ -57,6 +57,12 @@ namespace ImageToASCII.ArtGeneration
                     Console.SetCursorPosition(0, 0);
                     Console.Write(asciiFrame);
                     Thread.Sleep(1000 / Settings.Fps);
+
+                    if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Enter)
+                    {
+                        Console.Clear();
+                        return;
+                    }
                 }
             }
         }

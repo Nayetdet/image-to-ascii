@@ -8,10 +8,11 @@ Para utilizar esse código, é simples. Coloque cada um dos arquivos desta pági
 Ao ser executado pela primeira vez, o programa cria um arquivo de configurações JSON (`image-to-ascii-settings.json`). Este arquivo pode ser modificado posteriormente pelo usuário para ajustar as preferências:
 
 ```
-"Characters": " _,.:;-~=*!?/[($#@"
 "ScreenWidth": 80,
 "ScreenHeight": 40,
 "Fps": 12,
+"IsCharacterReversalEnabled": false,
+"Characters": " _,.:;-~=*!?/[($#@"
 ```
 > - **Characters:** Uma string que contém os caracteres que serão usados para representar diferentes tons de cinza na imagem ASCII. Cada caractere representa um nível de cinza, do mais escuro ao mais claro. <br />
 > - **ScreenWidth:** Representa a largura desejada para a arte ASCII gerada. <br />

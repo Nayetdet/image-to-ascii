@@ -30,25 +30,26 @@ namespace ImageToASCII
 
         private static void Main(string[] args)
         {
-            try
+            while (true)
             {
-                SettingsLoader settingsLoader = new();
-                DisplaySettings userSettings = settingsLoader.GetUserConfig();
+                try
+                {
+                    SettingsLoader settingsLoader = new();
+                    DisplaySettings userSettings = settingsLoader.GetUserSettings();
 
-                DisplayMenu(userSettings.ScreenWidth + 1, userSettings.ScreenHeight + 1);
-                Console.Write(">> Enter a valid file path for an image or GIF: ");
-                string filePath = Console.ReadLine() ?? string.Empty;
+                    DisplayMenu(userSettings.ScreenWidth + 1, userSettings.ScreenHeight + 1);
+                    Console.Write(">> Enter a valid file path for an image or GIF: ");
+                    string filePath = Console.ReadLine() ?? string.Empty;
 
-                ASCIIArtGenerator asciiArtGenerator = new(userSettings);
-                asciiArtGenerator.DisplayASCIIArt(filePath);
+                    ASCIIArtGenerator asciiArtGenerator = new(userSettings);
+                    asciiArtGenerator.DisplayASCIIArt(filePath);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"ERROR: {e.Message}");
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine();
-                Console.WriteLine($"ERROR: {e.Message}");
-            }
-
-            Console.ReadKey();
         }
     }
 }

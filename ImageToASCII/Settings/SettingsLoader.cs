@@ -21,7 +21,7 @@ namespace ImageToASCII.Settings
             TypeInfoResolver = DisplaySettingsContext.Default
         };
 
-        public DisplaySettings GetUserConfig()
+        public DisplaySettings GetUserSettings()
         {
             if (!File.Exists(SETTINGS_FILE_NAME))
             {

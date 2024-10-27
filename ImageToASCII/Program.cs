@@ -12,13 +12,13 @@ namespace ImageToASCII
 
             Console.Clear();
             Console.SetWindowSize(1, 1);
-            Console.SetWindowSize(userSettings.ScreenWidth, userSettings.ScreenHeight);
+            Console.SetWindowSize(userSettings.ScreenWidth + 1, userSettings.ScreenHeight + 1);
             Console.Title = "ImageToASCII";
             Console.CursorVisible = false;
 
             if (OperatingSystem.IsWindows())
             {
-                Console.SetBufferSize(userSettings.ScreenWidth, userSettings.ScreenHeight);
+                Console.SetBufferSize(userSettings.ScreenWidth + 1, userSettings.ScreenHeight + 1);
             }
 
             Console.WriteLine("""

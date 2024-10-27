@@ -5,7 +5,7 @@ Este é um código que transforma qualquer imagem ou GIF em uma representação 
 Para utilizar esse código, é simples. Coloque cada um dos arquivos desta página em uma PASTA VAZIA, junto com alguns arquivos nos formatos png, jpg ou gif. Em seguida, inicie o executável do arquivo e insira o nome da imagem desejada quando solicitado.
 
 ## Configurações Personalizadas
-Ao ser executado pela primeira vez, o programa cria um arquivo de configurações JSON (`settings.json`). Este arquivo pode ser modificado posteriormente pelo usuário para ajustar as preferências:
+Ao ser executado pela primeira vez, o programa cria um arquivo de configurações JSON (`image-to-ascii-settings.json`). Este arquivo pode ser modificado posteriormente pelo usuário para ajustar as preferências:
 
 ```
 "Characters": " _,.:;-~=*!?/[($#@"

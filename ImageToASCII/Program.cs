@@ -35,6 +35,8 @@ namespace ImageToASCII
 
             ASCIIArtGenerator asciiArtGenerator = new(userSettings);
             asciiArtGenerator.DisplayASCIIArt(filePath);
+
+            Console.ReadKey();
         }
     }
 }

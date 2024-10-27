@@ -8,15 +8,15 @@ Para utilizar esse código, é simples. Coloque cada um dos arquivos desta pági
 Ao ser executado pela primeira vez, o programa cria um arquivo de configurações JSON (`settings.json`). Este arquivo pode ser modificado posteriormente pelo usuário para ajustar as preferências:
 
 ```
-"characters": " _,.:;-~+=*!?/[(&$#@"
-"screenWidth": 80,
-"screenHeight": 40,
-"fps": 12,
+"Characters": " _,.:;-~=*!?/[($#@"
+"ScreenWidth": 80,
+"ScreenHeight": 40,
+"Fps": 12,
 ```
-> - **characters:** Uma string que contém os caracteres que serão usados para representar diferentes tons de cinza na imagem ASCII. Cada caractere representa um nível de cinza, do mais escuro ao mais claro. <br />
-> - **screenWidth:** Representa a largura desejada para a arte ASCII gerada. <br />
-> - **screenHeight:** Representa a altura desejada para a arte ASCII gerada. <br />
-> - **fps:** Indica o número de frames (quadros) por segundo na animação ASCII gerada a partir de um arquivo GIF. <br />
+> - **Characters:** Uma string que contém os caracteres que serão usados para representar diferentes tons de cinza na imagem ASCII. Cada caractere representa um nível de cinza, do mais escuro ao mais claro. <br />
+> - **ScreenWidth:** Representa a largura desejada para a arte ASCII gerada. <br />
+> - **ScreenHeight:** Representa a altura desejada para a arte ASCII gerada. <br />
+> - **Fps:** Indica o número de frames (quadros) por segundo na animação ASCII gerada a partir de um arquivo GIF. <br />
 
 ## Output alternativo
 Outro ponto crucial a ser destacado é que, durante o processamento da imagem, é gerado um arquivo .txt (no caso de imagens) ou um arquivo .zip (no caso de GIFs), proporcionando ao usuário fácil acesso aos resultados obtidos.

@@ -1,14 +1,13 @@
-﻿using System.Text.Json;
-using System.Reflection;
-using ImageToASCII.Exceptions;
+﻿using System.Text;
+using System.Text.Json;
 
 namespace ImageToASCII.Settings
 {
     internal class SettingsLoader
     {
-        public const string SETTINGS_FILE_NAME = "ascii-art-settings.json";
+        public const string SETTINGS_FILE_NAME = "image-to-ascii-settings.json";
         public readonly DisplaySettings DEFAULT_CONFIG = new(
-            characters: @" _,.:;-~+=*!?/[(&$#@",
+            characters: " _,.:;-~=*!?/[($#@",
             screenWidth: 80,
             screenHeight: 40,
             fps: 12
@@ -16,14 +15,20 @@ namespace ImageToASCII.Settings
 
         public DisplaySettings GetUserConfig()
         {
+            JsonSerializerOptions options = new()
+            {
+                WriteIndented = true,
+                TypeInfoResolver = DisplaySettingsContext.Default
+            };
+
             if (!File.Exists(SETTINGS_FILE_NAME))
             {
-                string defaultSettingsJson = JsonSerializer.Serialize(DEFAULT_CONFIG);
-                File.WriteAllText(SETTINGS_FILE_NAME, defaultSettingsJson);
+                string defaultSettingsJson = JsonSerializer.Serialize(DEFAULT_CONFIG, options);
+                File.WriteAllText(SETTINGS_FILE_NAME, defaultSettingsJson, Encoding.UTF8);
             }
 
-            string userSettingsJson = File.ReadAllText(SETTINGS_FILE_NAME);
-            DisplaySettings? userConfig = JsonSerializer.Deserialize<DisplaySettings>(userSettingsJson);
+            string userSettingsJson = File.ReadAllText(SETTINGS_FILE_NAME, Encoding.UTF8);
+            DisplaySettings? userConfig = JsonSerializer.Deserialize<DisplaySettings>(userSettingsJson, options);
             return userConfig ?? DEFAULT_CONFIG;
         }
     }
